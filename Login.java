@@ -21,7 +21,7 @@ public class Login extends JFrame
      */
     public Login() {
         // tamanho da tela
-        setSize(200,200);
+        setSize(250,200);
         
         GridBagConstraints gbc = new GridBagConstraints();
         GridBagLayout gbl = new GridBagLayout();
@@ -49,7 +49,7 @@ public class Login extends JFrame
         
         //gbc.fill = GridBagConstraints.HORIZONTAL;  
         gbc.gridx = 0;
-        gbc.gridwidth = 3;
+        gbc.gridwidth = 4;
         gbc.gridy = 0; 
         gbl.setConstraints(jlblTitulo, gbc);
         add(jlblTitulo);
@@ -77,7 +77,7 @@ public class Login extends JFrame
         add(jtfSen);
         //gbc.weightx = 0.5;
         gbc.gridx = 0;
-        gbc.gridwidth = 3;
+        gbc.gridwidth = 4;
         gbc.gridy = 3;
         gbl.setConstraints(jbtnEntra, gbc);
         add(jbtnEntra);
