@@ -8,6 +8,11 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Dimension;
 
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  * Classe de login do sistema.
  * 
@@ -16,6 +21,14 @@ import java.awt.Dimension;
  */
 public class Login extends JFrame
 {
+    // JDBC driver name and database URL
+
+    static final String JDBC_DRIVER = "org.mariadb.jdbc.Driver";
+    static final String DB_URL = "jdbc:mariadb://localhost:3306/banco01";
+
+    //  Database credentials
+    static final String USER = "root";
+    static final String PASS = "etec8";
     /**
      * Construtor para objetos da classe Login
      */
@@ -89,6 +102,42 @@ public class Login extends JFrame
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         // deixar a tela visível
         setVisible(true);
+        
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            //STEP 2: Register JDBC driver
+            Class.forName("org.mariadb.jdbc.Driver").newInstance();
+
+            //STEP 3: Open a connection
+            System.out.println("Conectando no banco de dados selecionado...");
+            conn = DriverManager.getConnection("jdbc:mariadb://localhost/banco01", "root", "etec8");
+            System.out.println("Banco de dados conectado com sucesso...");
+
+            
+        } catch (SQLException se) {
+            //Handle errors for JDBC
+            se.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try {
+                if (stmt != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+            }// do nothing
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException se) {
+                se.printStackTrace();
+            }//end finally try
+        }//end try
+        System.out.println("Tchau!");
     
     }
 }
