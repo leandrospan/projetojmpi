@@ -12,3 +12,5 @@ CREATE DATABASE banco01;
 USE banco01;
 
 CREATE TABLE usuarios(codusu INT NOT NULL AUTO_INCREMENT, usuario VARCHAR(255), senha VARCHAR(255), tipo VARCHAR(255), PRIMARY KEY(codusu));
+
+INSERT INTO usuarios(usuario, senha, tipo) VALUES ('leandro', '123', 'admin');

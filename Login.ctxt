@@ -4,4 +4,6 @@ comment0.text=\r\n\ Classe\ de\ login\ do\ sistema.\r\n\ \r\n\ @author\ Leandro\
 comment1.params=
 comment1.target=Login()
 comment1.text=\r\n\ Construtor\ para\ objetos\ da\ classe\ Login\r\n
-numComments=2
+comment2.params=e
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+numComments=3

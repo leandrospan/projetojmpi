@@ -2,16 +2,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  * Classe de login do sistema.
@@ -46,6 +50,7 @@ public class Login extends JFrame
         //jlblUsu.setMaximumSize(new Dimension(100, 20));
         //jlblUsu.setMinimumSize(new Dimension(100, 20));
         JTextField jtfUsu = new JTextField();
+        String usu = jtfUsu.getText();
         //jtfUsu.setSize(50, 20);
         jtfUsu.setPreferredSize(new Dimension(100, 20));
         //jtfUsu.setMaximumSize(new Dimension(100, 20));
@@ -55,10 +60,37 @@ public class Login extends JFrame
         //jlblSen.setMaximumSize(new Dimension(100, 20));
         //jlblSen.setMinimumSize(new Dimension(100, 20));
         JTextField jtfSen = new JTextField();
+        String sen = jtfSen.getText();
         jtfSen.setPreferredSize(new Dimension(100, 20));
         //jtfSen.setMaximumSize(new Dimension(100, 20));
         //jtfSen.setMinimumSize(new Dimension(100, 20));
         JButton jbtnEntra = new JButton("ENTRAR");
+        jbtnEntra.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Class.forName("org.mariadb.jdbc.Driver").newInstance();
+                    Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost/banco01", "root", "etec8");
+                    String sql = "SELECT * FROM usuarios";
+                    PreparedStatement pstmt = conn.prepareStatement(sql);
+                    ResultSet rs = pstmt.executeQuery();
+                    while (rs.next()) {
+                        String usuario = rs.getString("usuario");
+                        String senha = rs.getString("senha");
+                        String tipo = rs.getString("tipo");
+                        if((usuario.equals(usu)) && (senha.equals(sen))){
+                            JOptionPane.showMessageDialog(null, "Seja Bem vindo: " + usu);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Acesso Negado!");
+                        }
+                    }
+                    conn.close();
+                } catch (SQLException se) {
+                    se.printStackTrace();
+                } catch (Exception er) {
+                    er.printStackTrace();
+                }
+            }
+        });
         
         //gbc.fill = GridBagConstraints.HORIZONTAL;  
         gbc.gridx = 0;
@@ -104,7 +136,7 @@ public class Login extends JFrame
         setVisible(true);
         
         Connection conn = null;
-        Statement stmt = null;
+        //Statement stmt = null;
         try {
             //STEP 2: Register JDBC driver
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
@@ -113,30 +145,30 @@ public class Login extends JFrame
             System.out.println("Conectando no banco de dados selecionado...");
             conn = DriverManager.getConnection("jdbc:mariadb://localhost/banco01", "root", "etec8");
             System.out.println("Banco de dados conectado com sucesso...");
-
             
+            // sua consulta
+            String sql = "SELECT * FROM usuarios";
+            // prepara a consulta, por meio da conexão (conn)
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            // executa a consulta, obtendo um conjunto de resultados (ResultSet)
+            ResultSet rs = pstmt.executeQuery();
+            // itera pelo conjunto de resultados, perguntando se tem um próximo (next)
+            while (rs.next()) {
+                // se tem, obtém os campos que você quiser
+                String usuario = rs.getString("usuario");
+                String senha = rs.getString("senha");
+                String tipo = rs.getString("tipo");
+                // e, usa os valores aqui... exemplo: mostra na tela:
+                System.out.println(" - " + usuario + " - " + senha + " - " + tipo);
+            }
+            conn.close();
         } catch (SQLException se) {
             //Handle errors for JDBC
             se.printStackTrace();
         } catch (Exception e) {
             //Handle errors for Class.forName
             e.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try {
-                if (stmt != null) {
-                    conn.close();
-                }
-            } catch (SQLException se) {
-            }// do nothing
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }//end finally try
-        }//end try
+        } //end try
         System.out.println("Tchau!");
     
     }
