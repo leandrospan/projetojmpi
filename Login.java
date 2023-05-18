@@ -38,6 +38,7 @@ public class Login extends JFrame
      * Construtor para objetos da classe Login
      */
     public Login() {
+        super("..:: LOGIN ::..");
         // tamanho da tela
         setSize(250,200);
         
@@ -81,6 +82,7 @@ public class Login extends JFrame
                         if((usuario.equals(usu)) && (senha.equals(sen))){
                             JOptionPane.showMessageDialog(null, "Seja Bem vindo: " + usu);
                             Principal p = new Principal();
+                            setVisible(false);
                             p.setVisible(true);
                         }else{
                             JOptionPane.showMessageDialog(null, "Acesso Negado!");
