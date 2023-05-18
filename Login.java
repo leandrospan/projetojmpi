@@ -3,6 +3,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import java.awt.Toolkit;
 import java.awt.GridBagLayout;
@@ -50,7 +51,6 @@ public class Login extends JFrame
         //jlblUsu.setMaximumSize(new Dimension(100, 20));
         //jlblUsu.setMinimumSize(new Dimension(100, 20));
         JTextField jtfUsu = new JTextField();
-        String usu = jtfUsu.getText();
         //jtfUsu.setSize(50, 20);
         jtfUsu.setPreferredSize(new Dimension(100, 20));
         //jtfUsu.setMaximumSize(new Dimension(100, 20));
@@ -59,8 +59,7 @@ public class Login extends JFrame
         jlblSen.setPreferredSize(new Dimension(200, 20));
         //jlblSen.setMaximumSize(new Dimension(100, 20));
         //jlblSen.setMinimumSize(new Dimension(100, 20));
-        JTextField jtfSen = new JTextField();
-        String sen = jtfSen.getText();
+        JPasswordField jtfSen = new JPasswordField();
         jtfSen.setPreferredSize(new Dimension(100, 20));
         //jtfSen.setMaximumSize(new Dimension(100, 20));
         //jtfSen.setMinimumSize(new Dimension(100, 20));
@@ -77,11 +76,16 @@ public class Login extends JFrame
                         String usuario = rs.getString("usuario");
                         String senha = rs.getString("senha");
                         String tipo = rs.getString("tipo");
+                        String usu = jtfUsu.getText();
+                        String sen = jtfSen.getText();
                         if((usuario.equals(usu)) && (senha.equals(sen))){
                             JOptionPane.showMessageDialog(null, "Seja Bem vindo: " + usu);
+                            Principal p = new Principal();
+                            p.setVisible(true);
                         }else{
                             JOptionPane.showMessageDialog(null, "Acesso Negado!");
                         }
+                        //JOptionPane.showMessageDialog(null, "Usuário: " + usuario + "\nSenha: " + senha + "\nUsu: " + usu + "\nSen: " + sen);
                     }
                     conn.close();
                 } catch (SQLException se) {
@@ -138,13 +142,13 @@ public class Login extends JFrame
         Connection conn = null;
         //Statement stmt = null;
         try {
-            //STEP 2: Register JDBC driver
+            //Registrar JDBC driver
             Class.forName("org.mariadb.jdbc.Driver").newInstance();
 
-            //STEP 3: Open a connection
-            System.out.println("Conectando no banco de dados selecionado...");
+            //Abrir uma conexão
+            //System.out.println("Conectando no banco de dados selecionado...");
             conn = DriverManager.getConnection("jdbc:mariadb://localhost/banco01", "root", "etec8");
-            System.out.println("Banco de dados conectado com sucesso...");
+            //System.out.println("Banco de dados conectado com sucesso...");
             
             // sua consulta
             String sql = "SELECT * FROM usuarios";
@@ -159,17 +163,17 @@ public class Login extends JFrame
                 String senha = rs.getString("senha");
                 String tipo = rs.getString("tipo");
                 // e, usa os valores aqui... exemplo: mostra na tela:
-                System.out.println(" - " + usuario + " - " + senha + " - " + tipo);
+                //System.out.println(" - " + usuario + " - " + senha + " - " + tipo);
             }
             conn.close();
         } catch (SQLException se) {
-            //Handle errors for JDBC
+            //Pega erros do JDBC
             se.printStackTrace();
         } catch (Exception e) {
-            //Handle errors for Class.forName
+            //Pega erros do Class.forName
             e.printStackTrace();
-        } //end try
-        System.out.println("Tchau!");
+        } 
+        //System.out.println("Tchau!");
     
     }
 }
