@@ -52,8 +52,16 @@ public class Principal extends JFrame
                 cu.setVisible(true);
             }
         });
+        JMenuItem jmiMostraUsuarios = new JMenuItem("Lista Usuários"); 
+        jmiMostraUsuarios.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                MostraUsuarios mu = new MostraUsuarios();
+                mu.setVisible(true);
+            }
+        });
         
         jmCad.add(jmiUsuarios);
+        jmCad.add(jmiMostraUsuarios);
         mb.add(jmCad);
         // tamanho da tela
         setSize(600,400);  

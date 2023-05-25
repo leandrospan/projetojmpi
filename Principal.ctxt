@@ -6,4 +6,6 @@ comment1.target=Principal()
 comment1.text=\r\n\ Construtor\ para\ objetos\ da\ classe\ Principal\r\n
 comment2.params=ev
 comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
-numComments=3
+comment3.params=ev
+comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
+numComments=4

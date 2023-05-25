@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ATMUsuarios
+comment0.text=\r\n\ Classe\ de\ AbstractTableModel\ do\ usuarios\r\n\ \r\n\ @author\ (seu\ nome)\ \r\n\ @version\ (um\ n\u00FAmero\ da\ vers\u00E3o\ ou\ uma\ data)\r\n
+comment1.params=
+comment1.target=int\ getRowCount()
+comment2.params=
+comment2.target=int\ getColumnCount()
+comment3.params=column
+comment3.target=java.lang.String\ getColumnName(int)
+comment4.params=row\ column
+comment4.target=java.lang.Object\ getValueAt(int,\ int)
+numComments=5
