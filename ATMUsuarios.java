@@ -13,6 +13,7 @@ public class ATMUsuarios extends AbstractTableModel {
     public void addRow(Usuario usuario) {
         data.add(usuario);
         fireTableRowsInserted(data.size() - 1, data.size() - 1);
+        fireTableDataChanged();
     }
 
     @Override

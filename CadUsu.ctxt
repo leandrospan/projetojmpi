@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=CadUsu
-comment0.text=\r\n\ Tela\ de\ cadastro\ de\ usu\u00E1rios\ do\ sistema.\r\n\ \r\n\ @author\ Leandro\ Spanghero\ -\ Fera\r\n\ @version\ 1.0\ -\ 18/05/2023\r\n
-comment1.params=
-comment1.target=CadUsu()
-comment1.text=\r\n\ Construtor\ para\ objetos\ da\ classe\ CadUsu\r\n
-comment2.params=e
-comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
-numComments=3
