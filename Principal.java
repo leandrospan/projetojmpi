@@ -2,7 +2,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
-import javax.swing.JOptionPane;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
@@ -10,8 +9,8 @@ import java.awt.event.ActionEvent;
 
 /**
  * Tela principal do sistema
- * 
- * @author Leandro Spanghero - Fera 
+ *
+ * @author Leandro Spanghero - Fera
  * @version 1.0 - 18/05/2023
  */
 public class Principal extends JFrame
@@ -27,32 +26,32 @@ public class Principal extends JFrame
         // Criacão de menu
         JMenu jmCad = new JMenu("Cadastros");
         // Criacão de item do menu
-        JMenuItem jmiUsuarios = new JMenuItem("Usuários"); 
-        jmiUsuarios.addActionListener(new ActionListener() {
+        JMenuItem jmiCadUsuarios = new JMenuItem("Usuários");
+        jmiCadUsuarios.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
                 CadUsu cu = new CadUsu();
                 cu.setVisible(true);
             }
         });
-        /*JMenuItem jmiMostraUsuarios = new JMenuItem("Lista Usuários"); 
-        jmiMostraUsuarios.addActionListener(new ActionListener() {
+        JMenuItem jmiCadClientes = new JMenuItem("Clientes");
+        jmiCadClientes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ev) {
-                MostraUsuarios mu = new MostraUsuarios();
-                mu.setVisible(true);
+                CadCli cc = new CadCli();
+                cc.setVisible(true);
             }
-        }); */
+        });
         
-        jmCad.add(jmiUsuarios);
-        /*jmCad.add(jmiMostraUsuarios);*/
+        jmCad.add(jmiCadUsuarios);
+        jmCad.add(jmiCadClientes);
         mb.add(jmCad);
         // tamanho da tela
-        setSize(600,400);  
+        setSize(600,400);
         // ícone do canto superior esquerdo
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/javaicon.png")));
         // centralizar tela
         setLocationRelativeTo(null);
         //quando clicar no X fechar a tela
         setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-        setVisible(true);  
-    }  
+        setVisible(true);
+    }
 }

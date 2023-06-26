@@ -68,7 +68,7 @@ public class Login extends JFrame
         jbtnEntra.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Class.forName("org.mariadb.jdbc.Driver").newInstance();
+                    Class.forName("org.mariadb.jdbc.Driver");
                     Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost/banco01", "root", "etec8");
                     String sql = "SELECT * FROM usuarios";
                     PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -78,14 +78,14 @@ public class Login extends JFrame
                         String senha = rs.getString("senha");
                         String tipo = rs.getString("tipo");
                         String usu = jtfUsu.getText();
-                        String sen = jtfSen.getText();
+                        String sen = jtfSen.getPassword().toString();
                         if((usuario.equals(usu)) && (senha.equals(sen))){
-                            JOptionPane.showMessageDialog(null, "Seja Bem vindo: " + usu);
+                            //JOptionPane.showMessageDialog(null, "Seja Bem vindo: " + usu);
                             Principal p = new Principal();
                             setVisible(false);
                             p.setVisible(true);
                         }else{
-                            JOptionPane.showMessageDialog(null, "Acesso Negado!");
+                            //JOptionPane.showMessageDialog(null, "Acesso Negado!");
                         }
                         //JOptionPane.showMessageDialog(null, "Usuário: " + usuario + "\nSenha: " + senha + "\nUsu: " + usu + "\nSen: " + sen);
                     }
@@ -145,7 +145,7 @@ public class Login extends JFrame
         //Statement stmt = null;
         try {
             //Registrar JDBC driver
-            Class.forName("org.mariadb.jdbc.Driver").newInstance();
+            Class.forName("org.mariadb.jdbc.Driver");
 
             //Abrir uma conexão
             //System.out.println("Conectando no banco de dados selecionado...");
